@@ -1,0 +1,40 @@
+<head>
+    <title>ادارة المهام </title>
+
+</head>
+
+<body>
+
+    {{> todosMainTemp}}
+
+</body>
+
+
+
+<template name = "todosItemTemp">
+    <li>
+        <input type="text" value="{{name}}" name="todoItem">
+        [<a href='#' class="delete-todo">Delete This Task</a>]
+    </li>
+
+</template>
+
+<template name = "todosMainTemp">
+
+    {{>addTaskTemp}}
+
+    <ul>
+        {{#each todoF}}
+            {{> todosItemTemp}}
+        {{/each}}
+    </ul>
+
+</template>
+
+<template name = "addTaskTemp">
+    <form>
+     <p> ادراج مهمه:
+        <input type="text" placeholder="ادخل المهمه هنا ..." name="todoName">
+     </p>
+    </form>
+</template>
