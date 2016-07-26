@@ -1,4 +1,4 @@
-<head>
+<!--<head>
     <title>ادارة المهام </title>
 
 </head>
@@ -7,17 +7,10 @@
 
     {{> todosMainTemp}}
 
-</body>
+</body>-->
 
 
 
-<template name = "todosItemTemp">
-    <li>
-        <input type="text" value="{{name}}" name="todoItem">
-        [<a href='#' class="delete-todo">Delete This Task</a>]
-    </li>
-
-</template>
 
 <template name = "todosMainTemp">
 
@@ -28,8 +21,18 @@
             {{> todosItemTemp}}
         {{/each}}
     </ul>
+    {{> todosCountTemp}}
+</template>
+
+<template name = "todosItemTemp">
+    <li>
+        <input type="checkbox" {{checked}}>
+        <input type="text" value="{{name}}" name="todoItem">
+        [<a href='#' class="delete-todo">Delete This Task</a>]
+    </li>
 
 </template>
+
 
 <template name = "addTaskTemp">
     <form>
@@ -38,3 +41,44 @@
      </p>
     </form>
 </template>
+
+<template name = "todosCountTemp">
+    {{#if totalTodos}}
+        <p> You have completed {{completedTodos}} out of {{totalTodos}} tasks.</p>
+    {{/if}}
+</template>
+
+
+
+<!-- pages template -->
+<template name="register">
+    <h2>Register</h2>
+</template>
+
+<template name="login">
+    <h2>login</h2>
+</template>
+
+<template name="home">
+    <p> Welcome to the task mangment app </p>
+</template>
+
+<template name="navigate">
+
+    <ul>
+        <li><a href="{{pathFor route='home'}}"> الصفحه الرئيسية</a> </li>
+        <li><a href="{{pathFor route='login'}}">تسجيل دخول</a></li>
+        <li> <a href="/register">انشاء مستخدم</a></li>
+    </ul>
+</template>
+
+<template name="main">
+    <h1> برنامج ادارة المهام </h1>
+
+    {{> navigate}}
+
+    {{>yield}}
+    <hr />
+    <p> جميع الحقوق محفوظه .</p>
+</template>
+

@@ -1675,6 +1675,12 @@
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.11/npm/node_modules/readable-stream/lib/_stream_readable.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.11/npm/node_modules/cookie-signature/index.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.2.11/npm/node_modules/basic-auth-connect/index.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/index.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/read.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/text.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/raw.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/urlencoded.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/json.js" />
         <item url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.9_1/npm/node_modules/regenerator-runtime/path.js" />
         <item url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.9_1/npm/node_modules/regenerator-runtime/runtime-module.js" />
         <item url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.9_1/npm/node_modules/regenerator-runtime/runtime.js" />
@@ -5170,6 +5176,12 @@
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.11/npm/node_modules/readable-stream/lib/_stream_readable.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.11/npm/node_modules/cookie-signature/index.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.2.11/npm/node_modules/basic-auth-connect/index.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/index.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/read.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/text.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/raw.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/urlencoded.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/iron_router/1.0.13/npm/node_modules/body-parser/lib/types/json.js" />
       <root url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.9_1/npm/node_modules/regenerator-runtime/path.js" />
       <root url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.9_1/npm/node_modules/regenerator-runtime/runtime-module.js" />
       <root url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.9_1/npm/node_modules/regenerator-runtime/runtime.js" />
