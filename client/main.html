@@ -14,6 +14,7 @@
 
 <template name = "todosMainTemp">
 
+    <p>{{_id}}</p>
     {{>addTaskTemp}}
 
     <ul>
@@ -39,6 +40,7 @@
      <p> ادراج مهمه:
         <input type="text" placeholder="ادخل المهمه هنا ..." name="todoName">
      </p>
+
     </form>
 </template>
 
@@ -48,6 +50,26 @@
     {{/if}}
 </template>
 
+<!--route main page -->
+
+<template name="navigate">
+
+    <ul>
+        <li><a href="{{pathFor route='home'}}"> الصفحه الرئيسية</a> </li>
+        <li><a href="{{pathFor route='login'}}">تسجيل دخول</a></li>
+        <li> <a href="/register">انشاء مستخدم</a></li>
+    </ul>
+</template>
+
+<template name="main">
+    <h1> برنامج ادارة المهام </h1>
+
+    {{> navigate}}
+    {{> listsTemp}}
+    {{>yield}}
+    <hr />
+    <p> جميع الحقوق محفوظه .</p>
+</template>
 
 
 <!-- pages template -->
@@ -63,22 +85,28 @@
     <p> Welcome to the task mangment app </p>
 </template>
 
-<template name="navigate">
+<template name="addListTemp">
+    <form>
+        <input type="text" placeholder="List name here" name="listName">
+    </form>
 
+</template>
+
+<template name="listPageTemp">
+
+    <h2>Tasks: {{name}}</h2>
+    {{> todosMainTemp}}
+
+</template>
+
+<template name="listsTemp">
+    <h2>Lists</h2>
+    {{> addListTemp}}
     <ul>
-        <li><a href="{{pathFor route='home'}}"> الصفحه الرئيسية</a> </li>
-        <li><a href="{{pathFor route='login'}}">تسجيل دخول</a></li>
-        <li> <a href="/register">انشاء مستخدم</a></li>
+        {{#each list}}
+            <li><a href="{{pathFor route='listPage'}}">{{name}}</a></li>
+        {{/each}}
+
     </ul>
+
 </template>
-
-<template name="main">
-    <h1> برنامج ادارة المهام </h1>
-
-    {{> navigate}}
-
-    {{>yield}}
-    <hr />
-    <p> جميع الحقوق محفوظه .</p>
-</template>
-

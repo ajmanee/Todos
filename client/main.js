@@ -3,7 +3,8 @@
 Template.todosMainTemp.helpers({
 
     'todoF': function () {
-        return Todos.find({}, {sort: {createdAt : -1}});
+        var currentListVar =  this._id;
+        return Todos.find({ listId: currentListVar }, {sort: {createdAt: -1}})
     }
 });
 
@@ -22,17 +23,25 @@ Template.todosItemTemp.helpers({
 
 Template.todosCountTemp.helpers({
     'totalTodos' : function () {
-        return Todos.find().count();
+        var currentListVar = this._id;
+        return Todos.find({listId: currentListVar}).count();
 
     },
     'completedTodos' : function (){
-        return Todos.find({done: true}).count()
+        var currentListVar = this._id;
+        return Todos.find({listId : currentListVar,done: true}).count()
 
     }
 });
 
 
+Template.listsTemp.helpers({
 
+        'list' : function (){
+            return Lists.find({}, {sort: {name : 1}});
+        }
+
+});
 
 
 
@@ -43,11 +52,13 @@ Template.addTaskTemp.events({
         event.preventDefault()
         //Map from field name with variable
         var todoNameVar = event.target.todoName.value;
+        var currentListVar = this._id;
         //mongo insert sttment
         Todos.insert({
             name: todoNameVar,
             done: false,
-            createdAt : new Date()
+            createdAt : new Date(),
+            listId : currentListVar
         });
         //Clear the text box after insert
         $('[name = todoName]').val('');
@@ -93,7 +104,26 @@ Template.todosItemTemp.events({
             var todoItemVar = event.target.value;
             Todos.update({_id : documentId},{$set: {name: todoItemVar}} );
             console.log("Task Changed to " + todoItemVar);}
+    },
+
+
+
+});
+
+Template.addListTemp.events({
+    'submit form' : function (event) {
+        event.preventDefault();
+        var listNameVar = event.target.listName.value;
+        Lists.insert({
+            name: listNameVar
+        }, function (error , results) {
+
+           Router.go('listPage', {_id: results});
+
+        });
+         event.target.listName.value = '';
     }
+
 
 });
 
