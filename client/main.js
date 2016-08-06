@@ -4,7 +4,9 @@ Template.todosMainTemp.helpers({
 
     'todoF': function () {
         var currentListVar =  this._id;
-        return Todos.find({ listId: currentListVar }, {sort: {createdAt: -1}})
+        var currentUserVar = Meteor.userId();
+
+        return Todos.find({ listId: currentListVar, createdBy: currentUserVar }, {sort: {createdAt: -1}})
     }
 });
 
@@ -38,7 +40,8 @@ Template.todosCountTemp.helpers({
 Template.listsTemp.helpers({
 
         'list' : function (){
-            return Lists.find({}, {sort: {name : 1}});
+            var currentUserVar = Meteor.userId();
+            return Lists.find({createdBy: currentUserVar}, {sort: {name : 1}});
         }
 
 });
@@ -47,17 +50,47 @@ Template.listsTemp.helpers({
 
 //////////////////////////// EVENT section
 
+Template.navigateTemp.events({
+    'click .logout' : function(event){
+        event.preventDefault();
+        Meteor.logout();
+        Router.go('login');
+    }
+
+});
+
+Template.loginTemp.events({
+    'submit Form': function(){
+        event.preventDefault();
+        var email = event.target.email.value;
+        var password = event.target.password.value;
+        Meteor.loginWithPassword(email, password, function(error){
+            if(error){
+                console.log(error.reason);
+            } else {
+                var currentRoute = Router.current().route.getName();
+                if(currentRoute == "login") {
+                    Router.go("home");
+                }
+            }
+        });
+    }
+});
+
+
 Template.addTaskTemp.events({
     'submit form' : function(event){
         event.preventDefault()
         //Map from field name with variable
         var todoNameVar = event.target.todoName.value;
+        var currentUserVar = Meteor.userId();
         var currentListVar = this._id;
         //mongo insert sttment
         Todos.insert({
             name: todoNameVar,
             done: false,
             createdAt : new Date(),
+            createdBy : currentUserVar,
             listId : currentListVar
         });
         //Clear the text box after insert
@@ -114,17 +147,35 @@ Template.addListTemp.events({
     'submit form' : function (event) {
         event.preventDefault();
         var listNameVar = event.target.listName.value;
+        var currentUserVar = Meteor.userId();
         Lists.insert({
-            name: listNameVar
+            name: listNameVar,
+            createdBy: currentUserVar
         }, function (error , results) {
-
            Router.go('listPage', {_id: results});
-
         });
          event.target.listName.value = '';
     }
 
 
+});
+
+Template.register.events({
+    'submit form': function () {
+        event.preventDefault();
+        var emailVar = event.target.email.value;
+        var passwordVar = $('[name=password]').val();
+        Accounts.createUser({
+            email : emailVar,
+            password : passwordVar
+        }, function(error) {
+            if (error) {
+                console.log(error.reason); // ouput error
+            } else {
+                    Router.go("home");
+            }
+        });
+    }
 });
 
 
